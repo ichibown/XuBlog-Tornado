@@ -1,0 +1,48 @@
+﻿{% extends "blog_base.html" %}
+
+{% block navbars %}
+<ul class="nav nav-tabs">
+		<li class="span2"><a></a></li>
+		<li><a href="/home">HOME</a></li>
+		{% for forurl,name in handler.types.items() %}
+		<li><a href="/{{ forurl }}">{{ name }}</a></li>
+		{% end %}
+		
+		<li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="/lab">
+			Xu's Lab
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="">None</a></li>
+		</ul>
+		</li>
+		<li class="active"><a href="/about">关于</a></li> 
+</ul>
+{% end %}
+
+{% block maincontent %}
+		{% autoescape None %}
+		<div class="span2"></div>
+		<div class="span8 article">	
+			<div class="span12 inner">
+				<div class="articletitle">
+				<p><h1><strong><center>ABOUT</center></strong></h1></p>
+				<hr style="height: 1px; border:none; border-top:1px dashed #CCCCCC;" /> 
+				</div>
+				<div class="articlecontent">
+				<p>{{ aboutcontent }}</p>
+				</div> 
+			</div> 
+		</div>
+		<div class="span2"></div>
+
+{% end %}
+
+{% block mainmenus%}
+
+{% end %}
+
+{% block mainpaginate %}
+
+{% end %}

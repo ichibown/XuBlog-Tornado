@@ -1,0 +1,30 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeLog%} class="active" {% end %}
+
+{% block sidecontent%}
+				<table class="table table-striped table-hover inner">
+				<thead>
+					<tr>
+					<th>ID</th>
+					<th>行为</th>
+					<th>来访IP</th>
+				    <th>时间</th>
+				    <th>备注</th>
+					</tr>
+				</thead>
+				{% for log in data%}
+				<tbody>
+					<tr>
+					<td>{{ log.id }}</td>
+					<td>{{ log.action }}</td>
+					<td>{{ log.ip }}</td>					
+					<td>{{ log.time }}</td>
+					<td>{{ log.info }}</td> 
+					</tr> 
+				</tbody>
+				{% end %}
+				</table>
+				<a class="btn btn-info" href="http://www.ip138.com/" target="_black">去查查IP</a>
+				<a class="btn btn-danger pull-right" href="/admin/log/clear">清空日志(慎)</a>
+{% end %}

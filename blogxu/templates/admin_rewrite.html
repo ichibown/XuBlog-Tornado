@@ -1,0 +1,37 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeArticle%} class="active" {% end %}
+
+{% block sidecontent%}
+		<form class="form-horizontal" action="/admin/save" method="POST">			 
+			<div class="control-group">
+			<input type="hidden" name="aid" value="{{ blog.id }}"></input>
+			<label class="control-label" for="inputTitle"><strong>文章标题</strong></label>
+				<div class="controls">
+				<input class="title" type="text" name="title" id="inputTitle" title="标题长度不可大于40个汉字" placeholder="标题长度不可大于40个汉字" value="{{blog.title  }}">
+				</div>
+			</div>
+			<div class="control-group">
+			<label class="control-label" for="inputContent"><strong>文章内容</strong></label>
+			<div class="controls"> 
+			<textarea  class="content" rows="20" name="content" id="inputContent"  title="文章内容采用Markdown语法书写">{{ blog.content }}</textarea> 
+			</div>
+			</div>
+			<div class="control-group">
+			<label class="control-label" for="inputContent"><strong>分类标签</strong></label>
+			<div class="controls">
+			<select name="type">
+				{% for item in types%}
+				<option value="{{ item.id }}" {% if item.id == typeselected %} selected="selected" {% end %}>{{ item.name }}</option>
+				{% end %}
+			</select>
+			<input type="text" name="tags" id="inputTitle" placeholder="TAGs使用短横线隔开" title="标签未存在的会自动创建" value="{{ tagstr }}">
+			</div>
+			</div>
+			<div class="control-group">
+			<div class="controls">
+			<button type="submit" class="btn btn-primary btn-large">修改文章</button>
+			</div>
+			</div>
+		</form>
+{% end %}

@@ -1,0 +1,60 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeSettings%} class="active" {% end %}
+
+{% block sidecontent%}
+				<form class="form-horizontal" action="/admin/settings/cset" method="POST">
+				  <div class="control-group">
+					<label class="control-label" for="inputTitle"><strong>博客标题</strong></label>
+					<div class="controls">
+						<input class="title" name="BLOG_TITLE" type="text" id="inputTitle" title="标题长度别太长.." placeholder="标题长度别太长.." value="{{ settings['BLOG_TITLE'] }}">
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="inputContent"><strong>博客副标题</strong></label>
+					<div class="controls">
+						<input class="title" name="BLOG_SUBTITLE" type="text" id="inputContent" title="副标题长度同样别太长.." placeholder="副标题长度同样别太长.." value="{{ settings['BLOG_SUBTITLE'] }}"> 
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="inputName"><strong>管理员称呼</strong></label>
+					<div class="controls">
+						<input class="title" name="BLOG_ADMIN_NAME" type="text" id="inputName" title="会显示在每篇文章后以及管理界面头" placeholder="会显示在每篇文章后以及管理界面头." value="{{ settings['BLOG_ADMIN_NAME'] }}"> 
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="inputPsw"><strong>后台口令</strong></label>
+					<div class="controls">
+						<input class="title" type="text" id="inputPsw" readonly="true" value="{{ settings['BLOG_ADMIN_PASSWORD'] }}"> 
+					</div>
+				  </div>
+				  <div class="control-group">
+				    <label class="control-label" for="inputSum"><strong>统计代码</strong></label>
+					<div class="controls">
+					<textarea class="content" name="BLOG_SUM_CODE" rows="4" id="inputSum"  title="博客下方用于来访统计" placeholder="博客下方用于来访统计">{{ settings['BLOG_SUM_CODE'] }}</textarea>
+					</div>
+				  </div>
+				  <div class="control-group">
+				    <label class="control-label" for="inputComment"><strong>评论代码</strong></label>
+					<div class="controls">
+					<textarea class="content" name="BLOG_COMMENT_CODE" rows="4" id="inputComment"  title="文章下方用于评论的第三方社会化评论框" placeholder="文章下方用于评论的第三方社会化评论框">{{ settings['BLOG_COMMENT_CODE'] }}</textarea>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<div class="controls">
+					<button type="submit" class="btn btn-primary">保存功能设置</button>
+					</div>
+				  </div>
+				</form>
+				
+				<form class="form-horizontal" action="/admin/settings/cpsw" method="POST">
+				  <div class="control-group">
+					<label class="control-label" for="inputPswO"><strong>修改口令</strong></label>
+					<div class="controls">
+					  <input type="password" name="oldpsw" id="inputPswO" placeholder="原口令">
+					  <input type="password" name="newpsw" id="inputPswO" placeholder="新口令">
+					  <button type="submit" class="btn btn-primary">修改口令</button>
+					</div>  
+				  </div> 
+				</form>
+{% end %} 

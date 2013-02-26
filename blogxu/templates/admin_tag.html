@@ -1,0 +1,34 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeTag%} class="active" {% end %}
+
+{% block sidecontent%}
+				<table class="table table-striped table-hover inner">
+				<thead>
+					<tr>
+					<th>ID</th>
+					<th>标签名</th>
+					<th>所属分类</th>
+				    <th>创建时间</th>
+				    <th>修改</th>
+				    <th>其他</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in data%}
+					<tr>
+					<td>{{ item.id }}</td>
+					<td>{{ item.name}}</td>
+					<td>{{ item.type.name }}</td>					
+					<td>{{ item.createtime }}</td>
+					<form action="/admin/tag/change/{{ item.id }}" method="GET">
+					<td><input type="text" name="newname" title="新标签名" placeholder="新标签名"></td>
+					<td>
+					<button class="btn btn-small btn-success" type="submit">修改</button>
+					</form>
+					<a class="btn btn-small btn-danger" href="/admin/tag/del/{{ item.id }}">删除</a></td>
+					</tr> 
+					{% end %}
+				</tbody>
+				</table>
+{% end %}

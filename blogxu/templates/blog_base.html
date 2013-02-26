@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="gbk">
+		<title>{{ handler.title }} @ {{ handler.bloginfos['BLOG_TITLE'] }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/static/css/mycss.css" rel="stylesheet" media="screen">
+		<link href="/static/css/syntax.css" rel="stylesheet">
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+	<!--头部-->
+	<div class="header">
+	<div class="span1"></div>
+	<div class="page-header">
+		<h1>{{ handler.bloginfos['BLOG_TITLE'] }}<small>{{ handler.bloginfos['BLOG_SUBTITLE'] }}</small></h1>
+	</div>
+	
+	<form class="form-search pull-right search" action="/q/search" method="GET"> 
+		<div class="input-append">
+		<input type="text" name="keyword" class="span2 search-query">
+		<button type="submit" class="btn">Search</button>
+		</div>
+	</form>
+	<!--导航tabs-->
+	{% block navbars %}
+	
+	{% end %}
+	</div>
+	
+	<!--正文部分-->
+    <div class="row-fluid container"> 
+		{% block maincontent %} 
+				
+		{% end %}
+			
+		{% block mainmenus%}
+			
+		{% end %}
+			 
+		{% block mainpaginate %} 
+		
+		{% end %}
+	</div> 
+	
+	<!--页尾-->
+	<div class="footer">
+	<hr style="height: 1px; border:none; border-top:1px solid #ddd;" />
+	<a href="http://www.renren.com/259779027">Powered By Xu Bowen</a> | <a href="/admin/new">Xu的后台入口</a> |
+	{{ handler.bloginfos['BLOG_SUM_CODE'] }}
+	</div>
+	<br>
+	<br>
+	</body>
+</html>

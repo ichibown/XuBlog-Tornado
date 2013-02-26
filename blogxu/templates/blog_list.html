@@ -1,0 +1,101 @@
+﻿{% extends "blog_base.html" %}
+
+{% block navbars %}
+<ul class="nav nav-tabs">
+		<li class="span2"><a></a></li>
+		<li {% if handler.typeactive == 'HOME' %} class="active" {% end %}><a href="/home">HOME</a></li>
+		{% for forurl,name in handler.types.items() %}
+		<li {% if handler.typeactive == forurl %} class="active" {% end %}><a href="/{{ forurl }}">{{ name }}</a></li>
+		{% end %}
+		
+		<li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="/lab">
+			Xu's Lab
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="">None</a></li>
+		</ul>
+		</li>
+		<li><a href="/about">关于</a></li>
+		{% if handler.typeactive == 'new-li' %}
+		<li class="active" ><a href="{{ thisquery }}">{{ handler.title }}</a></li>
+		{% end %}
+</ul>
+{% end %}
+
+
+{% block maincontent %}
+			<div class="span1"></div>
+			<div class="span10 article">
+			<div class="span9 inner">
+			{% for item in bloglist%}  
+				<div class="blogitem">
+					<div class="span2">
+						<div class="post_date">
+						<span class="date_m">{{ item.month }}</span><span class="date_d">{{ item.day }}</span><span class="date_y">{{ item.year }}</span>
+						</div>
+					</div>
+					<div class="span10">
+					<hr style="height: 1px; border:none; border-top:1px dashed #CCCCCC;" /> 
+					<h3><strong><a class="link" href="/p/{{ item.id }}">{{ item.title }}</a></strong></h3>
+					<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.subcontent }}</h4>
+					<div class="bloginfo">作者：{{ handler.bloginfos['BLOG_ADMIN_NAME'] }} &nbsp;&nbsp;|&nbsp;&nbsp; 分类：<a href="{{ item.typelink }}">{{ item.type }}</a>  &nbsp;&nbsp;|&nbsp;&nbsp; 标签： 
+					{% for id,name in item.tags.items() %}
+					<a class="btn btn-{{ handler.tagcss[id] }} btn-small" href="/q/tag/{{ id }}">{{ name }}</a>
+					{% end %}</div>
+					</div>
+				</div>  
+			{% end %}
+			</div>
+{% end %}
+
+{% block mainmenus%}
+			<div class="span3">
+			<div class="sidetop inner"><i class="icon-edit"></i>&nbsp;最近更新</div>
+			<div class="sidecontent">
+			<table class="table table-hover table-condensed table-bordered">
+				{% for item in handler.newlyupdate %}
+				<tr><td><i class="icon-hand-right"></i>&nbsp;&nbsp;&nbsp;<a href="/p/{{ item.id }}">{{ item.title }}</a></td></tr>
+				{% end %}
+			</table>
+			</div>
+			<div class="sidetop inner"><i class="icon-tags"></i>&nbsp;标签云</div>
+			<div class="sidecontent tags">
+			{% for tag in handler.tags %}
+			<a class="btn btn-{{ handler.tagcss[tag.id] }} btn-small" href="/q/tag/{{ tag.id }}">{{ tag.name }}</a> 
+			{% end %}
+			</div>
+			<div class="sidetop inner"><i class="icon-time"></i>&nbsp;日志归档</div>
+			<div class="sidecontent">
+			<table class="table table-hover table-condensed table-bordered">
+				{% for art in handler.articlebydate%}
+				<tr><td><i class="icon-hand-right"></i>&nbsp;&nbsp;&nbsp;<a href="/q/date/{{ art['year']}}/{{ art['month'] }}">{{ art['year'] }}年{{ art['month'] }}月（{{ art['num'] }}篇）</a></td></tr>
+				{% end %}				
+			</table>
+			</div>
+			<div class="sidetop inner"><i class="icon-tasks"></i>&nbsp;相关链接</div>
+			<div class="sidecontent">
+			<table class="table table-hover table-condensed table-bordered">
+				{% for link in handler.links %}
+				<tr><td><i class="icon-share-alt"></i>&nbsp;&nbsp;&nbsp;<a href="{{ link.url }}"  target="_black">{{ link.name }}</a></td></tr>  
+				{% end %}
+			</table>
+			</div>
+			</div>
+{% end %}
+
+{% block mainpaginate %}
+			<!--分页-->
+			<div class="pagination span12 page">
+				<ul>
+				<li><a href="{{ handler.pagination.action}}{{ handler.pagination.pre}}">←</a></li>
+				{% for page in handler.pagination.pages %}
+				<li {% if handler.pagination.current == page %} class="active" {% end %}><a href="{{ handler.pagination.action}}{{ page}}">{{ page }}</a></li>
+				{% end %}
+				<li><a href="{{ handler.pagination.action}}{{ handler.pagination.next}}">→</a></li>
+				</ul>
+			</div>
+			</div>
+			<div class="span1"></div>
+{% end %}

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="gbk">
+		<title>博客后台管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/static/css/mycss.css" rel="stylesheet" media="screen"> 
+		<style>
+			body {
+				background-color: White;
+				padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			}
+		</style>
+		
+	</head>
+	
+	<body>
+	<!--头部nav导航-->
+	<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+		<div class="container" style="width: auto;"> 
+        <a class="brand">&nbsp;&nbsp;&nbsp;{{ handler.staticdata['blog_name'] }}的后台管理</a>
+        <div class="nav-collapse">
+			<ul class="nav pull-left">
+            <li><a href="/">返回博客前台</a></li> 
+			</ul>
+			<ul class="nav pull-right">
+            <li><a>欢迎您，管理员：{{ handler.staticdata['admin_name'] }}</a></li> 
+			<li><a href="/admin/logout">注销登陆</a></li> 
+			</ul>
+        </div><!-- /.nav-collapse -->
+		</div>
+    </div><!-- /navbar-inner -->
+	</div>
+	
+	<!--主体采用流式布局-->
+	<br><br><br>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2">
+				<div class="well sidebar-nav">
+				<ul class="nav nav-list"> 
+				  <li {% block activeWrite %}{% end %}><a href="/admin/new"><i class="icon-pencil"></i>写新博客</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeArticle %}{% end %}><a href="/admin/article"><i class="icon-file"></i>文章管理</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeUpload %}{% end %}><a href="/admin/upload"><i class="icon-arrow-up"></i>上传管理</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeType %}{% end %}><a href="/admin/type"><i class="icon-tag"></i>分类管理</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeTag %}{% end %}><a href="/admin/tag"><i class="icon-tags"></i>标签管理</a></li> 
+				  <li class="divider"></li>
+				  <li {% block activeLink %}{% end %}><a href="/admin/link"><i class="icon-globe"></i>链接管理</a></li> 
+				  <li class="divider"></li>
+				  <li {% block activeLog %}{% end %}><a href="/admin/log"><i class="icon-eye-open"></i>系统日志</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeSettings %}{% end %}><a href="/admin/settings"><i class="icon-wrench"></i>功能管理</a></li>
+				  <li class="divider"></li>
+				  <li {% block activeSum %}{% end %}><a href="/admin/sum"><i class="icon-calendar"></i>博客统计</a></li>
+				</ul>
+				</div><!--/.well -->
+			</div>
+			<div class="span10 article">
+				{% block sidecontent%}
+				{% end %}
+			</div>
+		</div>
+	</div>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>  
+ 
+	</body>
+</html>

@@ -1,0 +1,39 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeLink%} class="active" {% end %}
+
+{% block sidecontent%}
+				<table class="table table-striped table-hover inner">
+				<thead>
+					<tr>
+					<th>ID</th>
+					<th>链接名</th>
+					<th>链接目标</th>
+					<th>创建时间</th>
+				    <th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for link in data %}
+					<tr>
+					<td>{{ link.id }}</td>
+					<td>{{ link.name }}</td>
+					<td><a href="{{ link.url }}" target="_black">{{ link.url }}</a></td> 					
+					<td>{{ link.createtime }}</td>
+					<td>
+					<a class="btn btn-small btn-danger" href="/admin/link/del/{{ link.id }}">删除</a></td>
+					</tr> 
+					{% end %}
+					<form class="form-horizontal" action="/admin/link/add" method="POST">
+					<tr> 
+					<td></td>
+					<td><input type="text" name="linkname" title="请输入链接名" placeholder="请输入链接名"></td>
+					<td><input type="text" name="linkurl" title="请输入链接目标" placeholder="请输入链接目标"></td>			
+					<td><button class="btn btn-small btn-success" type="submit">添加新链接</button></td>
+					<td>
+					</td>
+					</tr> 
+					</form>
+				</tbody>
+				</table>
+{% end %}

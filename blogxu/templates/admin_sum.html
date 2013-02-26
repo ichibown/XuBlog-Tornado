@@ -1,0 +1,30 @@
+﻿{% extends "admin_base.html" %}
+
+{% block activeSum%} class="active" {% end %}
+
+{% block sidecontent%}
+				<table class="table table-striped table-hover inner"> 
+				<tbody>  
+					<tr>
+					<td>文章总数</td>
+					<td>{{ data['blog_num'] }}篇</td> 
+					</tr> 
+					<tr>
+					<td>分类总数</td>
+					<td>{{ data['type_num'] }}个</td> 
+					</tr> 
+					<tr>
+					<td>标签总数</td>
+					<td>{{ data['tag_num'] }}个</td> 
+					</tr> 
+					<tr>
+					<td>文件总数</td>
+					<td>{{ data['file_num'] }}个</td> 
+					</tr> 
+					<tr>
+					<td>来访统计</td>
+					<td><a href="#">查看统计数据</a></td> 
+					</tr> 
+				</tbody>
+				</table>
+{% end %}
